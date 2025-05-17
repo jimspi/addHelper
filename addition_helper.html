@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Addition Helper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 30px;
+            max-width: 400px;
+            margin: auto;
+        }
+        h1 {
+            color: #ff69b4;
+        }
+        .number-input {
+            font-size: 24px;
+            width: 50px;
+            text-align: center;
+        }
+        .button {
+            background-color: #ffb347;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .result {
+            font-size: 26px;
+            margin-top: 20px;
+            color: #333399;
+            border-top: 2px dashed #ccc;
+            padding-top: 10px;
+        }
+        .dots {
+            margin-top: 10px;
+        }
+        .dot {
+            height: 20px;
+            width: 20px;
+            background-color: #6a5acd;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Let's Add!</h1>
+        <input type="number" id="num1" class="number-input" value="3"> +
+        <input type="number" id="num2" class="number-input" value="5">
+        <br>
+        <button class="button" onclick="showHelp()">I need help!</button>
+        <button class="button" onclick="calculate()">What’s the answer?</button>
+        <div class="dots" id="dotVisual"></div>
+        <div class="result" id="resultText">Answer will appear here.</div>
+    </div>
+    <script>
+        function showHelp() {
+            let n1 = parseInt(document.getElementById('num1').value);
+            let n2 = parseInt(document.getElementById('num2').value);
+            let visual = '';
+            visual += '<p><strong>' + n1 + '</strong> dots:</p>';
+            for (let i = 0; i < n1; i++) {
+                visual += '<span class="dot"></span>';
+            }
+            visual += '<p><strong>' + n2 + '</strong> dots:</p>';
+            for (let i = 0; i < n2; i++) {
+                visual += '<span class="dot"></span>';
+            }
+            document.getElementById('dotVisual').innerHTML = visual;
+        }
+
+        function calculate() {
+            let n1 = parseInt(document.getElementById('num1').value);
+            let n2 = parseInt(document.getElementById('num2').value);
+            document.getElementById('resultText').innerText = "Answer: " + (n1 + n2);
+        }
+    </script>
+</body>
+</html>
