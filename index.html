@@ -63,7 +63,7 @@
         <p><strong>Solve:</strong> <span id="problemText">?? + ??</span></p>
         <input type="number" id="userAnswer" class="number-input" placeholder="?" />
         <br>
-        <button class="button" onclick="checkAnswer()">Check Answer</button>
+        <button class="button" onclick="checkAnswer()">Check Answer</button><button class="button" onclick="showHelp()">I need help</button>
         <button class="button" onclick="generateProblem()">Next Problem</button>
         <div class="dots" id="dotVisual"></div>
         <div class="result" id="resultText">Answer will appear here.</div>
@@ -74,8 +74,8 @@
         let currentB = 0;
 
         function generateProblem() {
-            currentA = Math.floor(Math.random() * 100) + 1;
-            currentB = Math.floor(Math.random() * 100) + 1;
+            currentA = Math.floor(Math.random() * 20) + 1;
+            currentB = Math.floor(Math.random() * 20) + 1;
             document.getElementById('problemText').innerText = currentA + " + " + currentB;
             document.getElementById('userAnswer').value = '';
             document.getElementById('resultText').innerText = 'Answer will appear here.';
