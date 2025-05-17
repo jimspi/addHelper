@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Addition Helper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 30px;
+            max-width: 400px;
+            margin: auto;
+        }
+        h1 {
+            color: #ff69b4;
+        }
+        .number-input {
+            font-size: 24px;
+            width: 50px;
+            text-align: center;
+        }
+        .button {
+            background-color: #ffb347;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .result {
+            font-size: 26px;
+            margin-top: 20px;
+            color: #333399;
+            border-top: 2px dashed #ccc;
+            padding-top: 10px;
+        }
+        .dots {
+            margin-top: 10px;
+        }
+        .dot {
+            height: 20px;
+            width: 20px;
+            background-color: #6a5acd;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Let's Add!</h1>
+        <p><strong>Solve:</strong> <span id="problemText">?? + ??</span></p>
+        <input type="number" id="userAnswer" class="number-input" placeholder="?" />
+        <br>
+        <button class="button" onclick="checkAnswer()">Check Answer</button><button class="button" onclick="showHelp()">I need help</button>
+        <button class="button" onclick="generateProblem()">Next Problem</button>
+        <div class="dots" id="dotVisual"></div>
+        <div class="result" id="resultText">Answer will appear here.</div>
+    </div>
+
+    <script>
+        let currentA = 0;
+        let currentB = 0;
+
+        function generateProblem() {
+            currentA = Math.floor(Math.random() * 20) + 1;
+            currentB = Math.floor(Math.random() * 20) + 1;
+            document.getElementById('problemText').innerText = currentA + " + " + currentB;
+            document.getElementById('userAnswer').value = '';
+            document.getElementById('resultText').innerText = 'Answer will appear here.';
+            document.getElementById('dotVisual').innerHTML = '';
+        }
+
+        function checkAnswer() {
+            let userAns = parseInt(document.getElementById('userAnswer').value);
+            let correctAns = currentA + currentB;
+            let result = userAns === correctAns ? "🎉 Correct! " : "❌ Try again. ";
+            result += currentA + " + " + currentB + " = " + correctAns;
+            document.getElementById('resultText').innerText = result;
+
+            let visual = '<p><strong>' + currentA + '</strong> dots:</p>';
+            for (let i = 0; i < Math.min(currentA, 100); i++) {
+                visual += '<span class="dot"></span>';
+            }
+            visual += '<p><strong>' + currentB + '</strong> dots:</p>';
+            for (let i = 0; i < Math.min(currentB, 100); i++) {
+                visual += '<span class="dot"></span>';
+            }
+            document.getElementById('dotVisual').innerHTML = visual;
+        }
+
+        // Initialize first problem on load
+        window.onload = generateProblem;
+    </script>
+</body>
+</html>
